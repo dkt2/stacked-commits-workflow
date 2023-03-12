@@ -14,13 +14,13 @@ Stacked Commits is the idea that instead of doing PRs (peer reviews) at the leve
 
 Lets say there are 3 developers and 3 stories.
 
-Developers:
+Example Developers:
 
 - Bucatini
 - Tortellini
 - Fettuccine
 
-Stores:
+Example Stores:
 
 - AB#01 add GET /ping endpoint that returns HTTP 200 and the message "I'm alive"
   - Release date: Dec 10
@@ -44,6 +44,30 @@ Bucatini, Tortellini, Fettuccine are united in pushing back against the business
 ### Team vs Business conflict
 
 The Team is united in their stance that they've rolled over long enough: they need to address growing problems with the maintainability and scalability of the codebase. The Business gives them the go-around never conceding. A messy conflict ensues and everyone leaves feeling bitter.
+
+## The Stacked Workflow
+
+The classic stacked workflow is having only one main branch and pishing directly to it. Each commit should build and not break functionality.
+
+## The Adapted Stacked Workflow for our Team
+
+Since the classic Stacked Workflow doesnt work for our Team because of our processes, here is an adapted workflow for our team. 
+
+1. We still have main and develop branches
+2. We still have feature branches 
+3. But we now have one (and only one) reviewed branch
+4. Work still happens on feature branches, but as soon as a commit happens (a self-contained and complete commit) that commit is immediately PR-d into the reviewed branch. A self-contained and complete commit should include a corresponding addition or update to the tests to test that change. Only that specific test needs to pass (full testing that all tests passes happens in the next step). 
+5. When the reviewed branch history contains a sufficient amount of commits to implement a feature, a new branch called release-xxx-feature is made. The full integration test is run aganist that branch and the necessary fixes are applied to it (outside of the Stacked Commits workflow). 
+
+### Questions 
+
+- What if my work has a dependency on another person's work?
+  - Ideally, you or the other person does one small commit to the reviewed branch to resolve the dependency and then you both can continue working concurrently. 
+  - Worst case, one or the other waits for the other person to finish
+
+### The Goal 
+
+The purpose of this workflow is to make PRs smaller and less burdensome (because they will be the size of commits) and to allow interleaving multiple work at once. Instead of having to batch things in sizes of feature branches and then have to wait until the massive branch finishes and passes PR to do refactoring work, the refactoring work can happen in a refactoring commit right after the feature commit (or before) or just continuously in the background while other work happens concurrently. And then, of course, the refactoring gets released when the next feature release happens. 
 
 ## Pitfalls
 
